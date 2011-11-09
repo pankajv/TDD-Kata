@@ -46,5 +46,17 @@ namespace NunitTestProject
             StringCalc objStringCalc = new StringCalc();
             Assert.AreEqual(6, objStringCalc.Add(strValue));
         }
+
+        /// <summary>
+        /// Test method to check string contains multiple values
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase("2,4,9,10")]
+        public void Add_MultipleValueString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(25, objStringCalc.Add(strValue));
+        }
     }
 }
