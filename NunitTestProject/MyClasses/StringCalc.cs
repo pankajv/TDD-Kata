@@ -16,7 +16,7 @@ namespace MyClasses
 
         public int Add(string strValue)
         {
-
+            strValue.Trim();
 
             if (string.IsNullOrEmpty(strValue))
             {
@@ -24,7 +24,16 @@ namespace MyClasses
             }
             else
             {
-                return _sum + Convert.ToInt32(strValue);   
+                if ((strValue).IndexOf(',') == -1)
+                    return _sum + Convert.ToInt32(strValue);
+                else { 
+                var arr=strValue.Split(',');
+                    foreach(var a in arr )
+                    {
+                    _sum=_sum+ Convert.ToInt32(a);
+                    }
+                    return _sum;
+                }
             }
         }
     }

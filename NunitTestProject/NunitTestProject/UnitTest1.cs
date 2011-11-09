@@ -34,5 +34,17 @@ namespace NunitTestProject
             StringCalc objStringCalc = new StringCalc();
             Assert.AreEqual(2, objStringCalc.Add(strValue));
         }
+
+        /// <summary>
+        /// Test method to check string contains 2 values
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase("2,4")]
+        public void Add_TwoValueString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(6, objStringCalc.Add(strValue));
+        }
     }
 }
