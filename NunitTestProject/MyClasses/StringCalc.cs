@@ -17,24 +17,17 @@ namespace MyClasses
         public int Add(string strValue)
         {
             strValue.Trim();
+            return (string.IsNullOrEmpty(strValue) ? _sum : ((strValue).IndexOf(',') == -1 ? _sum + Convert.ToInt32(strValue) : SplitMultiple(strValue)));
+        }
+        private int SplitMultiple(string s)
+        {
+            var arr = s.Split(',');
+            foreach (var a in arr)
+            {
+                _sum = _sum + Convert.ToInt32(a);
+            }
+            return _sum;
 
-            if (string.IsNullOrEmpty(strValue))
-            {
-                return _sum + 0;
-            }
-            else
-            {
-                if ((strValue).IndexOf(',') == -1)
-                    return _sum + Convert.ToInt32(strValue);
-                else { 
-                var arr=strValue.Split(',');
-                    foreach(var a in arr )
-                    {
-                    _sum=_sum+ Convert.ToInt32(a);
-                    }
-                    return _sum;
-                }
-            }
         }
     }
 }
