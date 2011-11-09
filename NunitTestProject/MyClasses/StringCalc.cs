@@ -7,16 +7,25 @@ namespace MyClasses
 {
     public class StringCalc
     {
+        int _sum;
+
+        public StringCalc()
+        {
+            _sum = 0;
+        }
 
         public int Add(string strValue)
         {
+
+
             if (string.IsNullOrEmpty(strValue))
             {
-                return 0;
+                return _sum + 0;
             }
-
-            return -1;  // added just to fail our case
-
+            else
+            {
+                return _sum + Convert.ToInt32(strValue);   
+            }
         }
     }
 }
