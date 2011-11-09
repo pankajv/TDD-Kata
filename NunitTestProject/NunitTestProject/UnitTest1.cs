@@ -15,7 +15,7 @@ namespace NunitTestProject
         public void Add_EmptyString(string strValue)
         {
             StringCalc objStringCalc = new StringCalc();
-            Assert.AreEqual(-1, objStringCalc.Add(strValue));
+            Assert.AreEqual(0, objStringCalc.Add(strValue));
         }
     }
 }

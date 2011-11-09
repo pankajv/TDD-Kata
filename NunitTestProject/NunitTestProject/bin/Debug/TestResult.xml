@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2011-11-09" time="14:34:10">
+<test-results name="D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2011-11-09" time="15:38:59">
   <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5420" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files\NUnit 2.5.10\bin\net-2.0" machine-name="W7DDELL-371" user="pankajv" user-domain="PYRAMIDINDIA" />
   <culture-info current-culture="en-IN" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll" executed="True" result="Success" success="True" time="0.040" asserts="0">
+  <test-suite type="Assembly" name="D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll" executed="True" result="Success" success="True" time="0.044" asserts="0">
     <results>
-      <test-suite type="Namespace" name="NunitTestProject" executed="True" result="Success" success="True" time="0.036" asserts="0">
+      <test-suite type="Namespace" name="NunitTestProject" executed="True" result="Success" success="True" time="0.039" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="UnitTest1" executed="True" result="Success" success="True" time="0.035" asserts="0">
+          <test-suite type="TestFixture" name="UnitTest1" executed="True" result="Success" success="True" time="0.039" asserts="0">
             <results>
-              <test-suite type="ParameterizedTest" name="Add_EmptyString" executed="True" result="Success" success="True" time="0.031" asserts="0">
+              <test-suite type="ParameterizedTest" name="Add_EmptyString" executed="True" result="Success" success="True" time="0.034" asserts="0">
                 <results>
-                  <test-case name="NunitTestProject.UnitTest1.Add_EmptyString(&quot;&quot;)" executed="True" result="Success" success="True" time="0.028" asserts="2" />
+                  <test-case name="NunitTestProject.UnitTest1.Add_EmptyString(&quot;&quot;)" executed="True" result="Success" success="True" time="0.032" asserts="2" />
                 </results>
               </test-suite>
             </results>
