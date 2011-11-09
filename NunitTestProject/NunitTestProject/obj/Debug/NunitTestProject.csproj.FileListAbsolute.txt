@@ -1,0 +1,5 @@
+D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\obj\Debug\ResolveAssemblyReference.cache
+D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll
+D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.pdb
+D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\obj\Debug\NunitTestProject.dll
+D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\obj\Debug\NunitTestProject.pdb
