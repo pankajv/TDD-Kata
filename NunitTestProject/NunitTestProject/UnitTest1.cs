@@ -58,5 +58,17 @@ namespace NunitTestProject
             StringCalc objStringCalc = new StringCalc();
             Assert.AreEqual(25, objStringCalc.Add(strValue));
         }
+
+        /// <summary>
+        /// Test method to check new lines between numbers 
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase("2\n4,3,10")]
+        public void Add_ValuesSeparatedWithNewLineAndCommasString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(19, objStringCalc.Add(strValue));
+        }
     }
 }
