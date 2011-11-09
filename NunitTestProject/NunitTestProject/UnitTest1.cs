@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using MyClasses;
 
 namespace NunitTestProject
 {
@@ -13,6 +14,8 @@ namespace NunitTestProject
         [TestCase("")]
         public void Add_EmptyString(string strValue)
         {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(-1, objStringCalc.Add(strValue));
         }
     }
 }
