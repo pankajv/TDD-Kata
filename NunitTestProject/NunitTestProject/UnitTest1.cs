@@ -70,5 +70,20 @@ namespace NunitTestProject
             StringCalc objStringCalc = new StringCalc();
             Assert.AreEqual(19, objStringCalc.Add(strValue));
         }
+
+        /// <summary>
+        /// Test method to support different delimiters
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase( "//;\n1;2")]
+        public void Add_ValuesSeparatedWithMultipleDelimitersString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(3, objStringCalc.Add(strValue));
+        }
+
+
+       
     }
 }
