@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using MyClasses;
+using System.Diagnostics;
 
 namespace NunitTestProject
 {
@@ -76,14 +77,66 @@ namespace NunitTestProject
         /// </summary>
         /// <param name="strValue"></param>
         [Test]
-        [TestCase( "//;\n1;2")]
+        [TestCase("//;\n1;2")]
         public void Add_ValuesSeparatedWithMultipleDelimitersString(string strValue)
         {
             StringCalc objStringCalc = new StringCalc();
             Assert.AreEqual(3, objStringCalc.Add(strValue));
         }
 
+        /// <summary>
+        /// Test method to support different delimiters
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase("-76")]
+        public void Add_NegativeValuesString(string strValue)
+        {
+            string message = "Negative not allowed:";
+            try
+            {
+                StringCalc objStringCalc = new StringCalc();
+                int i = objStringCalc.Add(strValue);
 
-       
+                int count = 0;
+                if (objStringCalc.NegativeCollection.Count > 0)
+                    foreach (var n in objStringCalc.NegativeCollection)
+                    {
+                        count++;
+                        message = message + n.ToString();
+                        if (count < objStringCalc.NegativeCollection.Count)
+                        {
+                            message = message + ",";
+                        }
+
+
+                    }
+
+                if (objStringCalc.NegativeCollection.Count > 0)
+                {
+                    //Assert.Pass(message);
+                    throw new ArgumentException(message);
+                }
+                else
+                {
+                    throw new Exception(message);
+
+                }
+            }
+            catch (ArgumentException ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+                Assert.Pass(message);
+            }
+            catch 
+            {
+                Debug.WriteLine("Method expecting negative as argument!");
+                Assert.Fail("Method expecting negative as argument!");
+            
+            }
+        }
+
+
     }
 }
