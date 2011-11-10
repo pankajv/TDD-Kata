@@ -20,19 +20,27 @@ namespace MyClasses
         public StringCalc()
         {
             _sum = 0;
-
+            objNegativeCollection.Clear();
         }
 
 
 
         public int Add(string strValue)
         {
-            strValue.Trim();
-            if (!string.IsNullOrEmpty(strValue))
+            try
             {
-                _delimiters = GetDelimiter(strValue);
+                strValue.Trim();
+                if (!string.IsNullOrEmpty(strValue))
+                {
+                    _delimiters = GetDelimiter(strValue);
+                }
+                return (string.IsNullOrEmpty(strValue) ? EvaluteForNegative(_sum) : ((strValue).IndexOfAny(_delimiters) == -1 ?CheckSingleNegativeValue( EvaluteForNegative(_sum + Convert.ToInt32(strValue))) : SplitMultiple(strValue)));
             }
-            return (string.IsNullOrEmpty(strValue) ? EvaluteForNegative(_sum) : ((strValue).IndexOfAny(_delimiters) == -1 ? EvaluteForNegative(_sum + Convert.ToInt32(strValue)) : SplitMultiple(strValue)));
+            catch(Exception ex)
+            {
+                throw ex;
+            
+            }
         }
 
         public char[] GetDelimiter(string strValue)
@@ -50,28 +58,57 @@ namespace MyClasses
 
         private int SplitMultiple(string s)
         {
-
-            s = GetStr(s);
-            //Debug.WriteLine(s1);
-            var arr = s.Split(_delimiters);
-            foreach (var a in arr)
+            try
             {
-                _sum = _sum + EvaluteForNegative(string.IsNullOrEmpty(a) ? 0 : Convert.ToInt32(a));
-                //Debug.WriteLine(a);
-            }
+                string message = "Negative not allowed:";
+                int count = 0;
+                s = GetStr(s);
+                //Debug.WriteLine(s1);
+                var arr = s.Split(_delimiters);
+                foreach (var a in arr)
+                {
+                    _sum = _sum + EvaluteForNegative(string.IsNullOrEmpty(a) ? 0 : Convert.ToInt32(a));
+                    // Debug.WriteLine(a);
+                }
 
-            return _sum;
+                if (this.NegativeCollection.Count > 0)
+                {
+                   // Debug.WriteLine(this.NegativeCollection.Count+"-----");
+                    foreach (var n in this.NegativeCollection)
+                    {
+                        count++;
+                        message = message + n.ToString();
+                        if (count < this.NegativeCollection.Count)
+                        {
+                            message = message + ",";
+                        }
+
+
+                    }
+                    throw new ArgumentException(message);
+                }
+                //Debug.WriteLine(_sum);
+                return _sum;
+            }
+            catch (ArgumentException e)
+            {
+
+                throw e;
+            }
 
         }
 
         private int EvaluteForNegative(object obj)
         {
+            
             int i = Convert.ToInt32(obj);
             if (i < 0)
             {
                 objNegativeCollection.Add(i);
             }
-            return i;
+           
+                return i;
+             
         }
 
         private string GetStr(string s)
@@ -90,6 +127,14 @@ namespace MyClasses
             {
                 return s;
             }
+        }
+        private int CheckSingleNegativeValue(int value)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Negative are not allowed:" + value);
+            }
+            return value;
         }
     }
 }
