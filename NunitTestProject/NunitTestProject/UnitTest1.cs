@@ -117,6 +117,15 @@ namespace NunitTestProject
             }
         }
 
+        [Test]
+        [TestCase("1001,4,1005")]
+        public void Add_GreaterThanSpecifiedValuesString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+
+            Assert.AreEqual(4, objStringCalc.Add(strValue));
+        }
+
 
     }
 }

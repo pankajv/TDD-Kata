@@ -67,7 +67,7 @@ namespace MyClasses
                 var arr = s.Split(_delimiters);
                 foreach (var a in arr)
                 {
-                    _sum = _sum + EvaluteForNegative(string.IsNullOrEmpty(a) ? 0 : Convert.ToInt32(a));
+                    _sum = _sum + EvaluteForNegative(string.IsNullOrEmpty(a) ? 0 : Convert.ToInt32(a) > 1000 ? 0 : Convert.ToInt32(a));
                     // Debug.WriteLine(a);
                 }
 
@@ -134,6 +134,8 @@ namespace MyClasses
             {
                 throw new ArgumentException("Negative are not allowed:" + value);
             }
+            if (value > 1000)
+                return 0;
             return value;
         }
     }
