@@ -89,7 +89,7 @@ namespace NunitTestProject
         /// </summary>
         /// <param name="strValue"></param>
         [Test]
-        [TestCase("-76")]
+        [TestCase("-76,1,-2,-21,12,-45,-1")]
         public void Add_NegativeValuesString(string strValue)
         {
             string message = "Negative not allowed:";
