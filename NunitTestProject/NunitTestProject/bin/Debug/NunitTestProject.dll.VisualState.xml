@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1017]D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll</TopNode>
+  <SelectedNode>[0-1000]NunitTestProject.UnitTest1</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1017]D:\Pankaj-Stuff\NunitTestProject\NunitTestProject\bin\Debug\NunitTestProject.dll" Expanded="true" />
+    <Node UniqueName="[0-1018]NunitTestProject" Expanded="true" />
+    <Node UniqueName="[0-1000]NunitTestProject.UnitTest1" Expanded="true" />
+    <Node UniqueName="[0-1001]NunitTestProject.UnitTest1.Add_EmptyString" Expanded="true" />
+    <Node UniqueName="[0-1015]NunitTestProject.UnitTest1.Add_GreaterThanSpecifiedValuesString" Expanded="true" />
+    <Node UniqueName="[0-1007]NunitTestProject.UnitTest1.Add_MultipleValueString" Expanded="true" />
+    <Node UniqueName="[0-1013]NunitTestProject.UnitTest1.Add_NegativeValuesString" Expanded="true" />
+    <Node UniqueName="[0-1003]NunitTestProject.UnitTest1.Add_OneValueString" Expanded="true" />
+    <Node UniqueName="[0-1005]NunitTestProject.UnitTest1.Add_TwoValueString" Expanded="true" />
+    <Node UniqueName="[0-1011]NunitTestProject.UnitTest1.Add_ValuesSeparatedWithMultipleDelimitersString" Expanded="true" />
+    <Node UniqueName="[0-1009]NunitTestProject.UnitTest1.Add_ValuesSeparatedWithNewLineAndCommasString" Expanded="true" />
+  </Nodes>
+</VisualState>

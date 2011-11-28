@@ -33,19 +33,41 @@ namespace MyClasses
                 if (!string.IsNullOrEmpty(strValue))
                 {
                     _delimiters = GetDelimiter(strValue);
+                    foreach (char c in _delimiters)
+                    {
+                        Debug.WriteLine(_delimiters.Length + "" +c);
+                    }
                 }
-                return (string.IsNullOrEmpty(strValue) ? EvaluteForNegative(_sum) : ((strValue).IndexOfAny(_delimiters) == -1 ?CheckSingleNegativeValue( EvaluteForNegative(_sum + Convert.ToInt32(strValue))) : SplitMultiple(strValue)));
+                return (string.IsNullOrEmpty(strValue) ? EvaluteForNegative(_sum) : ((strValue).IndexOfAny(_delimiters) == -1 ? CheckSingleNegativeValue(EvaluteForNegative(_sum + Convert.ToInt32(strValue))) : SplitMultiple(strValue)));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
-            
+
             }
         }
 
         public char[] GetDelimiter(string strValue)
         {
-            if (strValue.IndexOf("//") > -1)
+
+            if (strValue.IndexOf("//[") > -1)
+            {
+                int index = strValue.IndexOf("[");
+                char c = strValue.Substring(index + 1, 1).ToCharArray()[0];
+
+                char c1 = c;
+                int i = 2;
+                while (c == c1)
+                {
+
+                    c1 = strValue.Substring(index + i, 1).ToCharArray()[0];
+                    i++;
+                    Debug.Write(i.ToString() + c1.ToString());
+                }
+                return (strValue.Substring(index + 1, i - 2).ToCharArray());
+
+            }
+            else if (strValue.IndexOf("//") > -1)
             {
                 int index = strValue.IndexOf("//");
                 return (strValue.Substring(index + 2, 1).ToCharArray());
@@ -73,7 +95,7 @@ namespace MyClasses
 
                 if (this.NegativeCollection.Count > 0)
                 {
-                   // Debug.WriteLine(this.NegativeCollection.Count+"-----");
+                    // Debug.WriteLine(this.NegativeCollection.Count+"-----");
                     foreach (var n in this.NegativeCollection)
                     {
                         count++;
@@ -100,21 +122,28 @@ namespace MyClasses
 
         private int EvaluteForNegative(object obj)
         {
-            
+
             int i = Convert.ToInt32(obj);
             if (i < 0)
             {
                 objNegativeCollection.Add(i);
             }
-           
-                return i;
-             
+
+            return i;
+
         }
 
         private string GetStr(string s)
         {
 
-            if (s.IndexOf("\n") > 0 && s.IndexOf("//") > -1)
+            if (s.IndexOf("\n") > 0 && s.IndexOf("//") > -1 && s.IndexOf("[") > 0)
+            {
+                int index = s.IndexOf("]");
+                //Debug.WriteLine(index);
+                // Debug.WriteLine(s.Substring(index + 1, (s.Length)-index-1));
+                return (s.Substring(index + 1, (s.Length) - index - 1));
+            }
+            else if (s.IndexOf("\n") > 0 && s.IndexOf("//") > -1)
             {
 
                 int index = s.IndexOf("\n");

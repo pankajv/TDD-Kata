@@ -126,6 +126,17 @@ namespace NunitTestProject
             Assert.AreEqual(4, objStringCalc.Add(strValue));
         }
 
+        /// <summary>
+        /// Test method to support  delimiters of any length
+        /// </summary>
+        /// <param name="strValue"></param>
+        [Test]
+        [TestCase("//[***]\n1***2***3")]
+        public void Add_ValuesSeparatedWithDelimitersMultipleRepitionString(string strValue)
+        {
+            StringCalc objStringCalc = new StringCalc();
+            Assert.AreEqual(6, objStringCalc.Add(strValue));
+        }
 
     }
 }
