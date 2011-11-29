@@ -12,19 +12,29 @@ namespace MyClasses
         char[] _delimiters = new char[10];
         List<int> objNegativeCollection = new List<int>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public List<int> NegativeCollection
         {
             get { return objNegativeCollection; }
             set { objNegativeCollection = value; }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public StringCalc()
         {
             _sum = 0;
             objNegativeCollection.Clear();
         }
 
-
-
+        /// <summary>
+        /// Returns sumation of values passed as  string contains all int values separated by some delimiters
+        /// </summary>
+        /// <param name="strValue"></param>
+        /// <returns></returns>
         public int Add(string strValue)
         {
             try
@@ -33,28 +43,26 @@ namespace MyClasses
                 if (!string.IsNullOrEmpty(strValue))
                 {
                     _delimiters = GetDelimiter(strValue);
-                    foreach (char c in _delimiters)
-                    {
-                        Debug.WriteLine(_delimiters.Length + "--" + c);
-                    }
                 }
                 return (string.IsNullOrEmpty(strValue) ? EvaluteForNegative(_sum) : ((strValue).IndexOfAny(_delimiters) == -1 ? CheckSingleNegativeValue(EvaluteForNegative(_sum + Convert.ToInt32(strValue))) : SplitMultiple(strValue)));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Add Method:" + ex.Message);
+               // Debug.WriteLine("Add Method:" + ex.Message);
                 throw ex;
-
             }
         }
 
+        /// <summary>
+        /// gives delimiters
+        /// </summary>
+        /// <param name="strValue"></param>
+        /// <returns>char array</returns>
         public char[] GetDelimiter(string strValue)
         {
             if (strValue.IndexOf('[') != strValue.LastIndexOf('['))
             {
-                Debug.Write("----GetDelimiter-------------------" + strValue.Substring(strValue.IndexOf('['), strValue.LastIndexOf(']')));
                 return GetMultipleDelimitersOfAnyLength(strValue.Substring(strValue.IndexOf('['), strValue.LastIndexOf(']')));
-
             }
 
             else if (strValue.IndexOf("//[") > -1)
@@ -66,13 +74,10 @@ namespace MyClasses
                 int i = 2;
                 while (c == c1)
                 {
-
                     c1 = strValue.Substring(index + i, 1).ToCharArray()[0];
                     i++;
-                    Debug.Write(i.ToString() + c1.ToString());
                 }
                 return (strValue.Substring(index + 1, i - 2).ToCharArray());
-
             }
             else if (strValue.IndexOf("//") > -1)
             {
@@ -85,6 +90,11 @@ namespace MyClasses
             }
         }
 
+        /// <summary>
+        /// Method splits multiple values(More than 2 values) and returns addition of separated values
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns>Sum of Separarted  values</returns>
         private int SplitMultiple(string s)
         {
             try
@@ -92,17 +102,14 @@ namespace MyClasses
                 string message = "Negative not allowed:";
                 int count = 0;
                 s = GetStr(s);
-                //Debug.WriteLine(s1);
                 var arr = s.Split(_delimiters);
                 foreach (var a in arr)
                 {
                     _sum = _sum + EvaluteForNegative(string.IsNullOrEmpty(a) ? 0 : Convert.ToInt32(a) > 1000 ? 0 : Convert.ToInt32(a));
-                    // Debug.WriteLine(a);
                 }
 
                 if (this.NegativeCollection.Count > 0)
                 {
-                    // Debug.WriteLine(this.NegativeCollection.Count+"-----");
                     foreach (var n in this.NegativeCollection)
                     {
                         count++;
@@ -111,53 +118,41 @@ namespace MyClasses
                         {
                             message = message + ",";
                         }
-
-
                     }
                     throw new ArgumentException(message);
                 }
-                //Debug.WriteLine(_sum);
                 return _sum;
             }
             catch (ArgumentException e)
             {
-
+                //Debug.WriteLine("Method name 'SplitMultiple()' has thrown an Exception::");
                 throw e;
             }
-
         }
 
+     
+        
+        /// <summary>
+        /// Get Delimiters of any length and any kind.
+        /// </summary>
+        /// <param name="strValue">part of string contains all delimiters e.g. [*][%%]</param>
+        /// <returns> char array</returns>
         private char[] GetMultipleDelimitersOfAnyLength(string strValue)
         {
             try
             {
                 int index = 0;
-                //char[] _growableChar;
                 StringBuilder sb = new StringBuilder();
                 while (1 == 1)
                 {
-
                     if (strValue.IndexOf('[') >= 0)
                     {
-
                         if (strValue.IndexOf(']') >= 0)
                         {
-                            // _growableChar = new char[_delimiters.Length + (strValue.Substring(index + 1, strValue.IndexOf(']') - 1).ToCharArray()).Length];
-
                             foreach (char c in strValue.Substring(index + 1, strValue.IndexOf(']') - 1).ToCharArray())
                             {
-
                                 sb.Append(c);
-                                Debug.WriteLine("##" + sb.ToString());
-                                //_growableChar[_delimiters.Length] = c;
-
                             }
-                            //foreach (char c in _delimiters)
-                            //{
-                            //    Debug.WriteLine(c.ToString() + "^");
-                            //}
-                            //Debug.Write("@@@_delimiters:___________" + strValue + "////" + _delimiters.ToString() + strValue.Substring(index + 1, strValue.IndexOf(']') - 1));
-
                             if (strValue.IndexOf(']') != strValue.LastIndexOf(']'))
                             {
                                 strValue = strValue.Substring(strValue.IndexOf(']') + 1, (strValue.Length - strValue.LastIndexOf(']') + 1) + 1);
@@ -166,64 +161,68 @@ namespace MyClasses
                             {
                                 break;
                             }
-                            Debug.Write("_delimiters:_____12321_____" + strValue + "@");
                         }
-
                     }
                     else
                     {
                         break;
                     }
                 }
-                Debug.WriteLine(">>>>>>:" + sb.ToString());
                 return sb.ToString().ToCharArray();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("GetMultipleDelimitersOfAnyLength() Method exception::" + ex.Message);
+                Debug.WriteLine("Method name 'GetMultipleDelimitersOfAnyLength()' has thrown an Exception::" + ex.Message);
                 return null;
             }
         }
 
+        
+        /// <summary>
+        /// Evaluate negatives and adds into list collection of negative values.
+        /// </summary>
+        /// <param name="obj">-negative value as object</param>
+        /// <returns></returns>
         private int EvaluteForNegative(object obj)
         {
-
             int i = Convert.ToInt32(obj);
             if (i < 0)
             {
                 objNegativeCollection.Add(i);
             }
-
             return i;
-
         }
 
+        /// <summary>
+        /// Returns string after removal of portion that indicated delimiters
+        /// </summary>
+        /// <param name="s"> string as it is passed to Add method.</param>
+        /// <returns></returns>
         private string GetStr(string s)
         {
-
             if (s.IndexOf("\n") > 0 && s.IndexOf("//") > -1 && s.IndexOf("[") > 0)
             {
                 int index = s.LastIndexOf("]");
-                //Debug.WriteLine(index);
-                // Debug.WriteLine(s.Substring(index + 1, (s.Length)-index-1));
                 string str = s.Substring(index + 1, (s.Length) - index - 1);
-                Debug.Write(str);
                 return (str);
             }
             else if (s.IndexOf("\n") > 0 && s.IndexOf("//") > -1)
             {
 
                 int index = s.IndexOf("\n");
-                //Debug.WriteLine(index);
-                // Debug.WriteLine(s.Substring(index + 1, (s.Length)-index-1));
                 return (s.Substring(index + 1, (s.Length) - index - 1));
             }
-
             else
             {
                 return s;
             }
         }
+
+        /// <summary>
+        /// check value for the given range e.g. 0 to 1000
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private int CheckSingleNegativeValue(int value)
         {
             if (value < 0)
